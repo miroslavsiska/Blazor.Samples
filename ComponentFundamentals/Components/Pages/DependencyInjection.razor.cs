@@ -13,10 +13,10 @@ public partial class DependencyInjection
 
 
     //// Second option in code file
-    //private readonly StateService _state;
+    //private readonly StateService _stateService;
     //public DependencyInjection(StateService stateService )
     //{
-    //    _stateService = stateService ;
+    //    _stateService = stateService;
     //}
 
 }
