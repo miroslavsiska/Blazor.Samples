@@ -1,0 +1,12 @@
+﻿@page "/binding-eventcallback"
+@rendermode InteractiveServer
+
+<h3>Binding - EventCallback</h3>
+
+<p role="status">Binded child component count: @currentCount</p>
+<BindingEventCallbackComponent @bind-Count="@currentCount" />
+
+
+@code {
+    private int currentCount { get; set; } = 5;
+}

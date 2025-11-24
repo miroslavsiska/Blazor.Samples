@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+<div>
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">@Heading</a>
+        </div>
+    </div>
+
+    <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+    <div class="nav nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="flex-column">
+            @ChildContent
+        </nav>
+    </div>
+
+</div>
+
+@code {
+
+    /// <summary>
+    /// The sidebar heading option.
+    /// </summary>
+    [Parameter] public string Heading { get; set; } = default!;
+
+    /// <summary>
+    /// The component child content.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

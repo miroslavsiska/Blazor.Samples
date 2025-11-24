@@ -1,0 +1,8 @@
+﻿@page "/weather-page"
+@attribute [StreamRendering]
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<PageTitle>Weather page</PageTitle>
+<h1>Weather page</h1>
+
+<WeatherComponent /> 

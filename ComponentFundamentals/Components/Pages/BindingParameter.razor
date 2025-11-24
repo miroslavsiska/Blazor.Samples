@@ -1,0 +1,21 @@
+﻿@page "/binding-parameter"
+@rendermode InteractiveServer
+
+<h3>Binding</h3>
+
+
+<BindingParameterComponent Count="@currentCount" />
+
+<button class="btn btn-primary" @onclick="HandleButtonClickAsync">Click me</button>
+
+@code {
+
+    private int currentCount { get; set; }
+
+    private async Task HandleButtonClickAsync()
+    {
+        Console.WriteLine("Parent clicked...................");
+        currentCount++;
+        await Task.CompletedTask;
+    }
+}

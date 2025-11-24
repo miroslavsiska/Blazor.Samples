@@ -1,0 +1,108 @@
+﻿@using System.Runtime.CompilerServices
+@attribute [StreamRendering]
+@implements IAsyncDisposable
+
+
+<p>This component demonstrates showing data.</p>
+
+@if (forecasts is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th aria-label="Temperature in Celsius">Temp. (C)</th>
+                <th aria-label="Temperature in Farenheit">Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<WeatherForecast>? forecasts;
+    private CancellationTokenSource cancellationTokenSource = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        try
+        {
+            // simulate loading...
+            await Task.Delay(1000, cancellationTokenSource.Token);
+           
+            forecasts ??= new List<WeatherForecast>();
+
+            // fire and forget for DEMO purposes.
+            _ = Task.Run(async () =>
+            {
+                await foreach (var item in GetData(20))
+                {
+                    forecasts?.Add(item);
+                    await InvokeAsync(StateHasChanged);
+                }
+            });
+        }
+        catch (OperationCanceledException)
+        {
+            // NOOP
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+
+    private async IAsyncEnumerable<WeatherForecast> GetData( int count = 5, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+
+        for (int i = 1; i <= count; i++)
+        {
+            await Task.Delay(1000, cancellationToken); // simulate streaming
+            yield return new WeatherForecast
+            {
+                Date = startDate.AddDays(i),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            };
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsyncCore();
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual async ValueTask DisposeAsyncCore()
+    {
+        await cancellationTokenSource.CancelAsync();
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

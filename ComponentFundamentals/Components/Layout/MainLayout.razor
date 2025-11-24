@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu Heading="Component Fundamentals">
+            <NavMenuLink Href="@String.Empty" Text="Home" IconCssClass="bi bi-house-door-fill-nav-menu" Match="NavLinkMatch.All" />
+            <NavMenuLink Href="state-management" Text="State management" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+            <NavMenuLink Href="state-management-state-service" Text="State management - service" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+
+            <NavMenuLink Href="component-lifecycle" Text="Component lifecycle" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+            <NavMenuLink Href="component-lifecycle-prerendering-disabled" Text="Component lifecycle without prerendering" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+
+            <NavMenuLink Href="binding-parameter" Text="Binding parameter" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+            <NavMenuLink Href="binding-eventcallback" Text="Binding eventcallback" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+
+            <NavMenuLink Href="advanced-component" Text="Advanced component" IconCssClass="bi bi-plus-square-fill-nav-menu" />
+        </NavMenu>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

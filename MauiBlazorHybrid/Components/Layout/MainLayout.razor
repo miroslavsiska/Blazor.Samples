@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu Heading="MAUI Blazor Hybrid">
+             <NavMenuLink Href="@String.Empty" Text="Home" IconCssClass="bi bi-house-door-fill-nav-menu" Match="NavLinkMatch.All" />
+             <NavMenuLink Href="counter-page" Text="Counter" IconCssClass="bi bi-plus-square-fill-nav-menu"/>
+             <NavMenuLink Href="weather-page" Text="Weather" IconCssClass="bi bi-list-nested-nav-menu" />
+        </NavMenu>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

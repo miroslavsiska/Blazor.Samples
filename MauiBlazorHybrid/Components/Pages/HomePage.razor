@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+<p>Tento projekt demostruje MAUI Blazor Hybrid.</p>
+
+<h3>Stránka counter</h3>
+<p>
+    Stránka counter je vyrenderovaná na serveru a odeslána do prohlížeče jako statická <i>(krátký okamžik nefunguje klik)</i>.
+    Na pozadí se však načítá WASM aplikace, která se spustí ihned po stažení a stránka přejde do interaktivního režimu (začne fungovat tlačítko).
+    Všimněte si také, že se stránka nachází v projektu <code>WebApp.Client</code>. Projekt <code>WebApp</code> <i>(část která běží na serveru)</i> má tento projekt nalinkovaný v dependencies.
+</p>
+
+<h3>Stránka počasí</h3>
+<p>
+    Stránka využívá streaming rendering. To znamená, že se průběžně aktualizuje podle toho, jak jsou jí doručována data.
+</p>
+
+
+<HomeComponent />
